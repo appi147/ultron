@@ -7,24 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script>
-    $(document).ready(function(){
-  $('a[href^="#"]').on('click',function (e) {
-      e.preventDefault();
-
-      var target = this.hash;
-      var $target = $(target);
-
-      $('html, body').stop().animate({
-          'scrollTop': $target.offset().top
-      }, 900, 'swing', function () {
-          window.location.hash = target;
-      });
-  });
-});
-  </script>
   <style>
   body {
       font: 20px Montserrat, sans-serif;
@@ -167,25 +149,31 @@
           <div class="col-md-4">
             <h4 class="service-heading">Arpit Kumar Choudhary</h4>
             <div class="col-sm-4">
-              <img class="img-circle img-responsive" src="/home/prtik147/Downloads/fb.png" style="height: 50px;width: 50px;"></a>
+<img class="img-circle img-responsive" src="{{ url_for('static', filename='img/fb.png') }}" style="height: 50px;width: 50px;">
+</a>
             </div>
             <div class="col-sm-4">
-              <img class="img-circle img-responsive" src="/home/prtik147/Downloads/twitter.png" style="height: 50px;width: 50px;"></a>
+<img class="img-circle img-responsive" src="{{ url_for('static', filename='img/twitter.png') }}" style="height: 50px;width: 50px;">
+</a>
             </div>
             <div class="col-sm-4">
-              <img class="img-circle img-responsive" src="/home/prtik147/Downloads/git.png" style="height: 50px;width: 50px;"></a>
+<img class="img-circle img-responsive" src="{{ url_for('static', filename='img/git.png') }}" style="height: 50px;width: 50px;">
+</a>
             </div>
         </div>
          <div class="col-md-4">
             <h4 class="service-heading">Ayush Goyal</h4>
             <div class="col-sm-4">
-              <img class="img-circle img-responsive" src="/home/prtik147/Downloads/fb.png" style="height: 50px;width: 50px;"></a>
+<img class="img-circle img-responsive" src="{{ url_for('static', filename='img/fb.png') }}" style="height: 50px;width: 50px;">
+</a>
             </div>
             <div class="col-sm-4">
-              <img class="img-circle img-responsive" src="/home/prtik147/Downloads/twitter.png" style="height: 50px;width: 50px;"></a>
+<img class="img-circle img-responsive" src="{{ url_for('static', filename='img/twitter.png') }}" style="height: 50px;width: 50px;">
+</a>
             </div>
             <div class="col-sm-4">
-              <img class="img-circle img-responsive" src="/home/prtik147/Downloads/git.png" style="height: 50px;width: 50px;"></a>
+<img class="img-circle img-responsive" src="{{ url_for('static', filename='img/git.png') }}" style="height: 50px;width: 50px;">
+</a>
             </div>
         </div>
         <div class="col-md-4">     
@@ -204,6 +192,23 @@
       </div>
     </section>
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('a[href^="#"]').on('click', function (e) {
+      e.preventDefault();
 
+      var target = this.hash;
+      var $target = $(target);
+
+      $('html, body').stop().animate({
+        'scrollTop': $target.offset().top
+      }, 900, 'swing', function () {
+        window.location.hash = target;
+      });
+    });
+  });
+</script>
 </body>
 </html>
