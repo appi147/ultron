@@ -11,7 +11,7 @@ application = Flask(__name__)
 ai = apiai.ApiAI(API_ACCESS_TOKEN)
 
 
-@application.route("/", methods=['GET'])
+@application.route("/", methods=['GET', 'POST'])
 def homepage():
     query = request.args.get('query')
     if query is None:
