@@ -32,7 +32,7 @@ def execute(query):
 
 def wit_handler(action, act):
     if action == 'turn on' and act == 'lights':
-        return 'local on light'
+        return 'q1w2e3 on light'
 
 
 def handler(query):
