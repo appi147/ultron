@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 import apiai
+import json
 
 
 API_ACCESS_TOKEN = '6b19097281d4497f8126c12c9f7146a0'
@@ -16,26 +17,45 @@ def homepage():
     if query is None:
         return render_template('index.html')
     else:
-        return "pass"
+        return execute(query)
 
 
 def execute(query):
-    pass
+    state, first, second = handler(query)
+    print(state, first, second)
+    if state == 'api':
+        return first
+    if state == 'wit':
+        return wit_handler(first, second)
+    return 'fail'
+
+
+def wit_handler(action, act):
+    if action == 'turn on' and act == 'lights':
+        return 'local on light'
 
 
 def handler(query):
     inp, resp = dialogflow(query)
     entities = wit(query)
+    print('Entities')
+    print(entities)
     if inp is not None:
-        return 'api', resp
+        return 'api', resp, 'api_found'
     if inp is None:
+        if 'action' in entities:
+            print('Action found')
+        if 'act' in entities:
+            print('Act found')
         if 'action' in entities and 'act' in entities:
             action = entities['action'][0]['value']
             act = entities['act'][0]['value']
+            print('Action: '+action)
+            print('Act: '+act)
             return 'wit', action, act
         else:
-            return 'api', resp
-    return 'fail'
+            return 'api', resp, 'api_no_match_wit_no_match'
+    return 'fail', 'fake', 'fake'
 
 
 def wit(query):
@@ -43,7 +63,7 @@ def wit(query):
     try:
         r = requests.get(url=WIT_URL+query, headers=headers)
     except Exception as e:
-        print('Exception ' + e)
+        print('Exception ' + str(e))
         return None
     return r.json()['entities']
 
@@ -58,11 +78,15 @@ def dialogflow(query):
     dt = json.loads(a)
     try:
         resp = dt['result']['fulfillment']['speech']
-        inp = dt['result']['action']
+        try:
+            inp = dt['result']['action']
+        except Exception as e:
+            print('Exception in dialogflow ' + str(e))
+            inp = None
         if inp == 'input.unknown':
             inp = None
     except Exception as e:
-        print('Exception ' + e)
+        print('Exception in api server' + str(e))
         return None, None
     return inp, resp
 
