@@ -4,8 +4,8 @@ import apiai
 import json
 
 
-API_ACCESS_TOKEN = '6b19097281d4497f8126c12c9f7146a0'
-WIT_TOKEN = 'LNXRDEZGL53OOPT6JH7QSC7H5QJUYGNB'
+API_ACCESS_TOKEN = ''
+WIT_TOKEN = ''
 WIT_URL = 'https://api.wit.ai/message?v=04/02/2018&q='
 application = Flask(__name__)
 ai = apiai.ApiAI(API_ACCESS_TOKEN)
